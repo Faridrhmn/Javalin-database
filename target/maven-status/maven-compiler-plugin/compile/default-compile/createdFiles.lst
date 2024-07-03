@@ -1,0 +1,5 @@
+id/dojo/Main.class
+id/dojo/model/Actor.class
+id/dojo/helper/Res.class
+id/dojo/model/Payment.class
+id/dojo/DbConnection.class
