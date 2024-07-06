@@ -22,7 +22,7 @@ public class ActorController {
     };
 
     public static Handler getActorIdApi = ctx -> {
-        String actor_id = ctx.pathParam("actor_id");
+        Integer actor_id = Integer.valueOf(ctx.pathParam("actor_id"));
         ctx.json(gson.toJson(dataActorById(actor_id)));
     };
 

@@ -8,4 +8,11 @@ public class Res<T> {
         this.message = massage;
         this.data = data;
     }
+    public String getMessage() {
+        return message;
+    }
+
+    public T getData() {
+        return data;
+    }
 }
