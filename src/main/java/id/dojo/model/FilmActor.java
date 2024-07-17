@@ -16,6 +16,7 @@ public class FilmActor {
     private Integer actor_in_film;
     private Actor actor2;
     private List<Actor> actor;
+    private Integer actor_ids;
     private List<FilmActor> filmActor;
     private Film film;
 
@@ -55,14 +56,14 @@ public class FilmActor {
 
     public static Res<List<FilmActor>> listFilmActorAll(){
         Res<List<FilmActor>> res = new DBUtils<FilmActor>().list(
-                "SELECT fa.film_id, COUNT(fa.actor_id) AS actor_in_film FROM film_actor fa JOIN actor ac ON fa.actor_id = ac.actor_id GROUP BY fa.film_id LIMIT 5", FilmActor.class
+                "SELECT fa.film_id, COUNT(fa.film_id) AS actor_in_film FROM film_actor fa JOIN actor ac ON fa.actor_id = ac.actor_id GROUP BY fa.film_id LIMIT 5", FilmActor.class
         );
         return res;
     }
 
     public static Res<List<FilmActor>> listFilmActorAll2(){
         Res<List<FilmActor>> res = new DBUtils<FilmActor>().list(
-                "SELECT fa.film_id, COUNT(fa.actor_id) AS actor_in_film FROM film_actor fa JOIN actor ac ON fa.actor_id = ac.actor_id JOIN film fi ON fa.film_id = fi.film_id GROUP BY fa.film_id LIMIT 5", FilmActor.class
+                "SELECT fa.film_id, COUNT(fa.film_id) AS actor_in_film FROM film_actor fa JOIN actor ac ON fa.actor_id = ac.actor_id JOIN film fi ON fa.film_id = fi.film_id GROUP BY fa.film_id LIMIT 5", FilmActor.class
         );
         return res;
     }

@@ -19,13 +19,8 @@ public class FilmActorController {
 
         List<FilmActor> listFilmAll = list.getData();
         for(FilmActor filmActor : listFilmAll){
-            List<FilmActor> tr = FilmActor.listFilmActorById(filmActor.getFilm_id()).getData();
-            List<Actor> dataActor = new ArrayList<>();
-            for(FilmActor filmActor1 : tr){
-                Actor actor = Actor.dataActorById(filmActor1.getActor_id()).getData();
-                dataActor.add(actor);
-                filmActor.setActor(dataActor);
-            }
+            List<Actor> hehe = Actor.dataFilmActor(filmActor.getFilm_id()).getData();
+            filmActor.setActor(hehe);
         }
         ctx.json(gson.toJson(list));
     };
@@ -35,15 +30,10 @@ public class FilmActorController {
 
         List<FilmActor> listFilmAll = list.getData();
         for(FilmActor filmActor : listFilmAll){
-            List<FilmActor> tr = FilmActor.listFilmActorById(filmActor.getFilm_id()).getData();
-            List<Actor> dataActor = new ArrayList<>();
+            List<Actor> hehe = Actor.dataFilmActor(filmActor.getFilm_id()).getData();
+            filmActor.setActor(hehe);
             Film film = Film.getFilmById(filmActor.getFilm_id()).getData();
             filmActor.setFilm(film);
-            for(FilmActor filmActor1 : tr){
-                Actor actor = Actor.dataActorById(filmActor1.getActor_id()).getData();
-                dataActor.add(actor);
-            }
-            filmActor.setActor(dataActor);
         }
         ctx.json(gson.toJson(list));
     };

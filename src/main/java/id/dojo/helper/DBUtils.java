@@ -36,4 +36,28 @@ public class DBUtils<T> {
             return new Res(e.toString(), null);
         }
     }
+
+    public Res<T> insert(String query, T mapper) {
+        try (Connection con = sql2o.open()) {
+            Object post = con.createQuery(query).bind(mapper).executeUpdate();
+            return new Res(String.format("Berhasil Menambahkan Data."), "");
+        } catch (Sql2oException sql2oException) {
+            sql2oException.printStackTrace();
+            return new Res(sql2oException.toString(),null);
+        } catch (Exception e){
+            return new Res(e.toString(), null);
+        }
+    }
+
+    public Res<T> update(String query, T mapper) {
+        try (Connection con = sql2o.open()) {
+            Object update = con.createQuery(query).bind(mapper).executeUpdate();
+            return new Res(String.format("Berhasil Mengubah Data."), "");
+        } catch (Sql2oException sql2oException) {
+            sql2oException.printStackTrace();
+            return new Res(sql2oException.toString(),null);
+        } catch (Exception e){
+            return new Res(e.toString(), null);
+        }
+    }
 }
